@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "432800171156",
+    "project_id": "citizen-e5635",
+    "storage_bucket": "citizen-e5635.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:432800171156:android:a357d7f4a0e6483e1fe081",
+        "android_client_info": {
+          "package_name": "com.hyderabadwater.hmwssb"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEFL3SeV71_JZztZNrll_ci2Jpd46q98A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Define the domains that the app is allowed to connect to -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">https://test3.hyderabadwater.gov.in</domain>
+        <domain includeSubdomains="true">https://local.hyderabadwater.gov.in</domain>
+        <domain includeSubdomains="true">https://rwh.hyderabadwater.gov.in</domain>
+        <domain includeSubdomains="true">https://tanker.amigotechno.com</domain>
+        <domain includeSubdomains="true">https://app.office24by7.com</domain>
+        <domain includeSubdomains="true">https://mdm.hyderabadwater.gov.in</domain>
+    </domain-config>
+</network-security-config>
