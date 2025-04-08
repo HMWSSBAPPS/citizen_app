@@ -259,7 +259,13 @@ class SelectLocationAppState extends State<SelectLocationApp> {
     // SharedPreferences pref = await SharedPreferences.getInstance();
     try {
       // var postData = {"can_number": pref.getString(ShareKey.CANNO)};
-      var postData = {"can_number": LocalStorages.getCanno() ?? ""};
+      var postData = {
+        "REQUEST": {
+          "CAN": LocalStorages.getCanno() ?? "",
+          "MOBILENO": LocalStorages.getMobileNumber() ?? "",  // Replace with dynamic data if needed
+          "REQUESTTYPE": "TANKERQUEUE"
+        }
+      };
 
       // EasyLoading.show(status: "Loading...");
       var response = await NetworkApiService().commonApiCall(

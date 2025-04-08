@@ -9,6 +9,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hmwssb/core/common_web_app_screen.dart';
+import 'package:hmwssb/presentation/tanker_booking/models/tracking_status.dart';
 import 'package:map_picker/map_picker.dart';
 
 import 'package:hmwssb/core/api/api.dart';
@@ -38,6 +39,7 @@ class SelectLocationState extends State<SelectLocation> {
   late CameraPosition cameraPosition;
   var _currentPosition = const LatLng(17.4120325, 78.4601700);
   Booking? tokenData;
+  ResultArray? data;
   String callDriverWithVirtualNumber = '';
 
   @override
@@ -220,15 +222,24 @@ class SelectLocationState extends State<SelectLocation> {
     // SharedPreferences pref = await SharedPreferences.getInstance();
     try {
       // var postData = {"can_number": pref.getString(ShareKey.CANNO)};
-      var postData = {"can_number": LocalStorages.getCanno() ?? ""};
+      var postData = {
+        "REQUEST": {
+          "CAN": LocalStorages.getCanno() ?? "",
+          "MOBILENO": LocalStorages.getMobileNumber() ?? "",  // Replace with dynamic data if needed
+          "REQUESTTYPE": "TANKERQUEUE"
+        }
+      };
+
       // EasyLoading.show(status: "Loading...");
       var response = await NetworkApiService().commonApiCall(
           url: Api.baseUrlTanker, data: postData, isPostMethod: true);
       // EasyLoading.dismiss();
       if (response.statusCode == 200) {
         TrackStatus value = TrackStatus.fromJson(response.data);
+        Status value2 = Status.fromJson(response.data);
         if (value.error == 0) {
           setState(() {
+            data = value2.resultArray as ResultArray?;
             tokenData = value.booking;
             callDriverWithVirtualNumber = value.virtualNumber ?? '';
           });
@@ -259,16 +270,17 @@ class SelectLocationState extends State<SelectLocation> {
                         value: LocalStorages.getCanno() ?? ""),
                     // value: LocalStorage.getCanno() ?? ""),
                     DetailRow(
-                        title: 'Pin Number', value: tokenData?.pinNumber ?? ""),
+                        title: 'Pin Number', value: data?.pINNO?.toString() ?? ""),
+
                     DetailRow(
                         title: 'Queue Number',
-                        value: tokenData?.queueNumber.toString() ?? ""),
+                        value: data?.sEQNUM.toString() ?? ""),
                     DetailRow(
                         title: 'Token Number',
-                        value: tokenData?.tokenNumber.toString() ?? ""),
+                        value: data?.tOKENNO?.toString()??""),
                     DetailRow(
                         title: 'Required Date',
-                        value: tokenData?.requireddate?.toString() ?? ''),
+                        value: data?.rECVDDATE?.toString() ?? ''),
 
                     // Align(
                     //   alignment: Alignment.bottomRight,

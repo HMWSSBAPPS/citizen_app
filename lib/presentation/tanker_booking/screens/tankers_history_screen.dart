@@ -231,7 +231,7 @@ class _TankersHistoryScreenState extends State<TankersHistoryScreen> {
                           ),
                           Flexible(
                             child: Text(
-                              tankerData.cAN ?? '',
+                              tankerData.can ?? '',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: primary,
@@ -254,11 +254,11 @@ class _TankersHistoryScreenState extends State<TankersHistoryScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        tankerData.bOOKINGSTATUS ?? 'NIL',
+                        tankerData.bookingStatus ?? 'NIL',
                         style: TextStyle(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.bold,
-                          color: tankerData.bOOKINGSTATUS == 'DELIVERED'
+                          color: tankerData.bookingStatus == 'DELIVERED'
                               ? Colors.green
                               : Colors.red,
                         ),
@@ -269,18 +269,18 @@ class _TankersHistoryScreenState extends State<TankersHistoryScreen> {
               ),
               _customLabelAndBodyText(
                 label: 'Booking Date',
-                body: tankerData.bOOKINGDATE,
+                body: tankerData.bookingDate,
               ),
               _customLabelAndBodyText(
                 label: 'Required Date',
-                body: tankerData.rEQUIREDDATE,
+                body: tankerData.requiredDate,
               ),
               _customLabelAndBodyText(
-                label: tankerData.bOOKINGSTATUS == 'CANCELED'
+                label: tankerData.bookingStatus == 'CANCELED'
                     ? 'Cancelled Date'
                     : 'Delivered Date',
-                body: tankerData.rECTIFIEDDATE?.isNotEmpty ?? false
-                    ? '${tankerData.rECTIFIEDDATE?.dmyFormatedDate ?? ''} ${tankerData.rECTIFIEDDATE?.formatedTime ?? ''}'
+                body: tankerData.rectifiedDate?.isNotEmpty ?? false
+                    ? tankerData.rectifiedDate?.dmyFormattedDateTime ?? ''
                     : '',
               ),
               Row(
@@ -290,28 +290,28 @@ class _TankersHistoryScreenState extends State<TankersHistoryScreen> {
                     flex: 2,
                     child: _customLabelAndBodyText(
                       label: 'Pin No.',
-                      body: tankerData.pINNO,
+                      body: tankerData.pINNo,
                     ),
                   ),
                   Expanded(
                     child: _customLabelAndBodyText(
                       label: 'Tanker Qty',
-                      body: tankerData.tANKERQTY,
+                      body: tankerData.tankerQty,
                     ),
                   ),
                 ],
               ),
               _customLabelAndBodyText(
                 label: 'Vehicle No.',
-                body: tankerData.vEHICLENO,
+                body: tankerData.vehicleNo,
               ),
               _customLabelAndBodyText(
                 label: 'Name',
-                body: tankerData.nAME,
+                body: tankerData.name,
               ),
               _customLabelAndBodyText(
                 label: 'Address',
-                body: tankerData.aDDRESS,
+                body: tankerData.address,
               ),
             ],
           ),

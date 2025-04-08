@@ -29,7 +29,8 @@ class Api {
   //     "https://rwh.hyderabadwater.gov.in/mobile-apis/save-consumer-survey.json";
   static String baseUrlTanker =
       //"https://tankerstage.amigotechno.com/consumer-apis/get-tracking.json";
-      "https://tanker.amigotechno.com/apis/get-tracking.json";
+      //"https://tanker.amigotechno.com/apis/get-tracking.json";
+  "https://tanker.hyderabadwater.gov.in/TANKERWEBAPIS/API/GETDATA";
   static String app247InAppCalling =
       "https://app.office24by7.com/v1/common/API/addcalldata";
 

@@ -8,6 +8,26 @@ extension StringExtension on String {
   /// dmyFormatedDate Output: 02-04-1421.
   String get dmyFormatedDate =>
       DateFormat("dd-MMM-yyyy").format(DateTime.parse(this)).toString();
+  String get dmyFormattedDateTime {
+    try {
+      // Try parsing both known formats
+      DateTime date;
+      if (contains('-') && contains(':') && contains(' ')) {
+        if (this.contains(RegExp(r'[A-Za-z]{3}'))) {
+          // Format like: "06-APR-25 17:27"
+          date = DateFormat("dd-MMM-yy HH:mm").parse(this);
+        } else {
+          // Format like: "06-04-2025 16:51:00"
+          date = DateFormat("dd-MM-yyyy HH:mm:ss").parse(this);
+        }
+        return DateFormat("dd-MMM-yyyy hh:mm a").format(date);
+      } else {
+        return this;
+      }
+    } catch (_) {
+      return this;
+    }
+  }
 
   ///dMFormatedDate Output: 02-04.
   String get dMFormatedDate =>

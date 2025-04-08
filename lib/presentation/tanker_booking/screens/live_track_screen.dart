@@ -209,7 +209,13 @@ class LocationTrackingState extends State<LocationTracking> {
 
   trackDetails() async {
     try {
-      var postData = {"can_number": LocalStorages.getCanno() ?? ""};
+      var postData = {
+        "REQUEST": {
+          "CAN": LocalStorages.getCanno() ?? "",
+          "MOBILENO": LocalStorages.getMobileNumber() ?? "",  // Replace with dynamic data if needed
+          "REQUESTTYPE": "TANKERQUEUE"
+        }
+      };
       var response = await NetworkApiService().commonApiCall(
           url: Api.baseUrlTanker, data: postData, isPostMethod: true);
       if (response.statusCode == 200) {
